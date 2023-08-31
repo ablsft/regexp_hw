@@ -35,14 +35,13 @@ for index, name in enumerate(names):
         else:
             repeated_names[name] += [index]
 
-iter = 0
 for positions in sorted(repeated_names.values(), reverse=True):
     for position in sorted(positions[1:], reverse=True):
         for index, field in enumerate(contacts_list[positions[0]]):
             if not field:
-                contacts_list[positions[0]][index] = contacts_list[position-iter][index]
+                contacts_list[positions[0]][index] = contacts_list[position][index]
             
-        contacts_list.pop(position-iter)
+        contacts_list.pop(position)
 
 with open('phonebook.csv', 'w', encoding='utf-8') as f:
     datawriter = csv.writer(f, delimiter=',')
